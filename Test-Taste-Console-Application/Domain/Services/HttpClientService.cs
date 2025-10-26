@@ -19,6 +19,10 @@ namespace Test_Taste_Console_Application.Domain.Services
             Client.BaseAddress = new Uri(UriPath.BaseUri);
             Client.DefaultRequestHeaders.Accept.Add(new
                 MediaTypeWithQualityHeaderValue(HttpClientSettings.JsonType));
+
+            //[Tushar sharma] - 26th oct 2025 
+            // Added to authorize the api calls.
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(HttpClientSettings.AuthType, HttpClientSettings.APIKey);
         }
     }
 }

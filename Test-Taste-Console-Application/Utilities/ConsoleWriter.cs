@@ -76,5 +76,16 @@ namespace Test_Taste_Console_Application.Utilities
                 Console.WriteLine();
             }
         }
+
+        //[Tushar sharma] - 26th oct. 2025
+        /// <summary>
+        ///     Use to print the information in the console
+        /// </summary>
+        /// <param name="message"></param>
+        public static void CreateInfo(string message)
+        {
+            // Write in console
+            Console.WriteLine(message);
+        }
     }
 }
