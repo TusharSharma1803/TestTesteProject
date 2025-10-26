@@ -22,8 +22,16 @@ namespace Test_Taste_Console_Application.Domain.Services
 
         public void OutputAllPlanetsAndTheirMoonsToConsole()
         {
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the data is loading.
+            ConsoleWriter.CreateInfo(OutputString.LoadingData);
+
             //The service gets all the planets from the API.
             var planets = _planetService.GetAllPlanets().ToArray();
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the loading complete.
+            ConsoleWriter.CreateInfo(OutputString.LoadingComplete);
 
             //If the planets aren't found, then the function stops and tells that to the user via the console.
             if (!planets.Any())
@@ -31,6 +39,10 @@ namespace Test_Taste_Console_Application.Domain.Services
                 Console.WriteLine(OutputString.NoPlanetsFound);
                 return;
             }
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that we are writing the data.
+            ConsoleWriter.CreateInfo(OutputString.WritingData);
 
             //The column sizes and labels for the planets are configured here. 
             var columnSizesForPlanets = new[] { 20, 20, 30, 20 };
@@ -84,7 +96,14 @@ namespace Test_Taste_Console_Application.Domain.Services
 
                 //Under the data the footer is created.
                 ConsoleWriter.CreateLine(columnSizesForMoons);
+                
+                //[Tushar sharma] - 26th oct 2025 
+                // information for user that the writing complete.
+                ConsoleWriter.CreateInfo(OutputString.WritingComplete);
+
                 ConsoleWriter.CreateEmptyLines(2);
+
+                
 
                 /*
                     This is an example of the output for the planet Earth:
@@ -101,14 +120,26 @@ namespace Test_Taste_Console_Application.Domain.Services
 
         public void OutputAllMoonsAndTheirMassToConsole()
         {
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the data is loading.
+            ConsoleWriter.CreateInfo(OutputString.LoadingData);
+
             //The function works the same way as the PrintAllPlanetsAndTheirMoonsToConsole function. You can find more comments there.
             var moons = _moonService.GetAllMoons().ToArray();
-            
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the loading complete.
+            ConsoleWriter.CreateInfo(OutputString.LoadingComplete);
+
             if (!moons.Any())
             {
                 Console.WriteLine(OutputString.NoMoonsFound);
                 return;
             }
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that we are writing the data.
+            ConsoleWriter.CreateInfo(OutputString.WritingData);
 
             var columnSizesForMoons = new[] { 20, 20, 30, 20 };
             var columnLabelsForMoons = new[]
@@ -130,8 +161,15 @@ namespace Test_Taste_Console_Application.Domain.Services
             }
 
             ConsoleWriter.CreateLine(columnSizesForMoons);
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the writing complete.
+            ConsoleWriter.CreateInfo(OutputString.WritingComplete);
+
             ConsoleWriter.CreateEmptyLines(2);
+
             
+
             /*
                 This is an example of the output for the moon around the earth:
                 --------------------+--------------------+------------------------------+--------------------
@@ -145,13 +183,26 @@ namespace Test_Taste_Console_Application.Domain.Services
 
         public void OutputAllPlanetsAndTheirAverageMoonGravityToConsole()
         {
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the data is loading.
+            ConsoleWriter.CreateInfo(OutputString.LoadingData);
+
             //The function works the same way as the PrintAllPlanetsAndTheirMoonsToConsole function. You can find more comments there.
             var planets = _planetService.GetAllPlanets().ToArray();
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the loading complete.
+            ConsoleWriter.CreateInfo(OutputString.LoadingComplete);
+
             if (!planets.Any())
             {
                 Console.WriteLine(OutputString.NoMoonsFound);
                 return;
             }
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that we are writing the data.
+            ConsoleWriter.CreateInfo(OutputString.WritingData);
 
             var columnSizes = new[] { 20, 30 };
             var columnLabels = new[]
@@ -175,11 +226,83 @@ namespace Test_Taste_Console_Application.Domain.Services
             }
 
             ConsoleWriter.CreateLine(columnSizes);
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the writing complete.
+            ConsoleWriter.CreateInfo(OutputString.WritingComplete);
+
             ConsoleWriter.CreateEmptyLines(2);
+
             
+
             /*
                 --------------------+--------------------------------------------------
                 Planet's Number     |Planet's Average Moon Gravity
+                --------------------+--------------------------------------------------
+                1                   |0.0f
+                --------------------+--------------------------------------------------
+            */
+        }
+
+        //[Tushar sharma] - 26th oct. 2025
+        /// <summary>
+        ///     Console the Planets with the Average temperature of planets' moons
+        /// </summary>
+        public void OutputAllPlanetsAndTheirAverageMoonTemperatureToConsole()
+        {
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the data is loading.
+            ConsoleWriter.CreateInfo(OutputString.LoadingData);
+
+            //The function works the same way as the PrintAllPlanetsAndTheirMoonsToConsole function. You can find more comments there.
+            var planets = _planetService.GetAllPlanets().ToArray();
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the loading complete.
+            ConsoleWriter.CreateInfo(OutputString.LoadingComplete);
+
+            if (!planets.Any())
+            {
+                Console.WriteLine(OutputString.NoMoonsFound);
+                return;
+            }
+
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that we are writing the data.
+            ConsoleWriter.CreateInfo(OutputString.WritingData);
+
+            var columnSizes = new[] { 20, 30 };
+            var columnLabels = new[]
+            {
+                OutputString.PlanetId, OutputString.PlanetMoonAverageTemperature
+            };
+
+
+            ConsoleWriter.CreateHeader(columnLabels, columnSizes);
+
+            foreach (Planet planet in planets)
+            {
+                if (planet.HasMoons())
+                {
+                    ConsoleWriter.CreateText(new string[] { $"{planet.Id}", $"{planet.AverageMoonTemperature}" }, columnSizes);
+                }
+                else
+                {
+                    ConsoleWriter.CreateText(new string[] { $"{planet.Id}", $"-" }, columnSizes);
+                }
+            }
+
+            ConsoleWriter.CreateLine(columnSizes);
+            //[Tushar sharma] - 26th oct 2025 
+            // information for user that the writing complete.
+            ConsoleWriter.CreateInfo(OutputString.WritingComplete);
+            ConsoleWriter.CreateEmptyLines(2);
+
+
+            /*
+                Example of showing how the data will be shown to the console.
+                --------------------+--------------------------------------------------
+                Planet's Number     |Planet's Average Moon Temperature
                 --------------------+--------------------------------------------------
                 1                   |0.0f
                 --------------------+--------------------------------------------------

@@ -15,10 +15,20 @@ namespace Test_Taste_Console_Application.Domain.Objects
             get => 0.0f;
         }
 
+        // [Tushar Sharma] - 26th Oct. 2025 
+        // Using this field to set and get the average temperature value of the planets' moon.
+        /// <summary>
+        ///     Get the average temperature for planets' moons.
+        /// </summary>
+        public float AverageMoonTemperature { get; set; }
+
         public Planet(PlanetDto planetDto)
         {
             Id = planetDto.Id;
             SemiMajorAxis = planetDto.SemiMajorAxis;
+            // [Tushar Sharma] - 26th Oct. 2025
+            // Set the average moon temperature
+            AverageMoonTemperature = planetDto.AverageMoonTemperature;
             Moons = new Collection<Moon>();
             if(planetDto.Moons != null)
             {

@@ -8,5 +8,13 @@
         void OutputAllPlanetsAndTheirMoonsToConsole();
         void OutputAllMoonsAndTheirMassToConsole();
         void OutputAllPlanetsAndTheirAverageMoonGravityToConsole();
+
+        //[Tushar sharma] - 26th oct. 2025
+        // Added a interface method so that we call also access it in the program.cs file
+        // To call the method after having a dependency filled interface.
+        /// <summary>
+        ///     Console the average temperature of planets' moons
+        /// </summary>
+        void OutputAllPlanetsAndTheirAverageMoonTemperatureToConsole();
     }
 }

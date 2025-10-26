@@ -35,6 +35,10 @@ namespace Test_Taste_Console_Application
                 screenOutputService.OutputAllPlanetsAndTheirAverageMoonGravityToConsole();
                 screenOutputService.OutputAllMoonsAndTheirMassToConsole();
                 screenOutputService.OutputAllPlanetsAndTheirMoonsToConsole();
+
+                // [Tushar sharma] - 26th oct. 2025
+                // Added the method call to console the average temperature of the the planets' moons.
+                screenOutputService.OutputAllPlanetsAndTheirAverageMoonTemperatureToConsole();
             }
             catch (Exception exception)
             {
