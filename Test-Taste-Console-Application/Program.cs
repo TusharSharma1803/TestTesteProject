@@ -41,7 +41,14 @@ namespace Test_Taste_Console_Application
                 //The users and developers can see the thrown exceptions.
                 Logger.Instance.Error($"{LoggerMessage.ScreenOutputOperationFailed}{exception.Message}");
                 Console.WriteLine($"{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}");
-                System.Diagnostics.Debug.WriteLine($""{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}"");
+
+                //[Tushar Sharma] - 26th Oct. 2025
+                // The actual format to print string is ""  but in below it was """" which was throwing error.
+                System.Diagnostics.Debug.WriteLine($"{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}");
+
+                #region Comment OLD Code
+                    //System.Diagnostics.Debug.WriteLine($""{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}"");
+                #endregion 
             }
 
             serviceProvider.Dispose();
